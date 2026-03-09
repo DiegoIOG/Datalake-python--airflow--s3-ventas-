@@ -1,0 +1,10 @@
+venv/
+.env
+__pycache__/
+logs/
+data/
+airflow.db
+*.pyc
+CUsersMISA/
+test/
+*.log
