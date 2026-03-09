@@ -52,6 +52,8 @@ s3://datalake-1-/
             03/
             06/
                 sale_2026-03-06-13-16.json
+
+`````
 ## Project Structure
 project/
 │
@@ -76,6 +78,7 @@ project/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+`````
 
 ## Description:
 
