@@ -7,13 +7,13 @@ The goal of this project is to demonstrate a basic data engineering workflow whe
 ## Architecture
 
 The pipeline follows this flow:
-
+`````
 Python (Sales Generator)
 ↓
 Apache Airflow (Orchestration)
 ↓
 Amazon S3 (Data Lake Storage)
-
+`````
 ## Data Format
 
 Each generated JSON file represents a sales transaction with the following structure:
