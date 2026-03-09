@@ -13,7 +13,6 @@ from datetime import datetime
 
 from src.ingestion.sales_generator import generate_sales
 from src.storage.s3_uploader import upload_to_s3
-from src.warehouse.snowflake_loader import load_to_snowflake
 
 
 def generate_sales_data():
@@ -29,17 +28,9 @@ def upload_sales(**context):
 
     return file_name
 
-
-def load_sales_to_snowflake(**context):
-
-    file_name = context["ti"].xcom_pull(task_ids="upload_to_s3")
-
-    load_to_snowflake(file_name)
-
-
 with DAG(
     dag_id="sales_pipeline",
-    start_date=datetime(2024,1,1),
+    start_date=datetime(2024, 1, 1),
     schedule="*/1 * * * *",
     catchup=False
 ) as dag:
@@ -54,10 +45,4 @@ with DAG(
         python_callable=upload_sales
     )
 
-    snowflake_task = PythonOperator(
-        task_id="load_to_snowflake",
-        python_callable=load_sales_to_snowflake
-    )
-
-    generate_task >> upload_task >> snowflake_task
-
+    generate_task >> upload_task
